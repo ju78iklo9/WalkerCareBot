@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+    <model name="walker_11">
+
+        <link name="right_arm_link">
+            <pose>0 -0.2478 0.975 0 0 0</pose>
+            <inertial>
+                <pose>0 -0.2478 1.15 0 0 0</pose>
+                <inertia>
+                    <ixx>0.3050</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.3050</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0125</izz>
+                </inertia>
+                <mass>5.0</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.045 0.5</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.045 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Purple</script>
+                </material>
+            </visual>
+        </link>
+
+        <link name="left_arm_link">
+            <pose>0 0.2478 0.975 0 0 0</pose>
+            <inertial>
+                <pose>0 0.2478 1.15 0 0 0</pose>
+                <inertia>
+                    <ixx>0.3050</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.3050</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0125</izz>
+                </inertia>
+                <mass>5.0</mass>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.045 0.5</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.045 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Purple</script>
+                </material>
+            </visual>
+        </link>
+
+        <link name="right_leg">
+            <pose>0 -0.150 0.325 0 0 1.57075</pose>
+            <inertial>
+                <pose>0 -0.150 0.6 0 0 1.57075</pose>
+                <inertia>
+                    <ixx>0.3050</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.3050</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0125</izz>
+                </inertia>
+                <mass>10.0</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.6</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.6</length>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <script>Gazebo/Purple</script>
+                </material>
+            </visual>
+        </link>
+        <link name="right_foot">
+            <pose>0.0 -0.150 0.0125 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.3 0.1 0.025</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.3 0.1 0.025</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Red</script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="right_foot_joint" type="fixed">
+          <parent>right_leg</parent>
+          <child>right_foot</child>
+        </joint>
+
+        <joint name="right_leg_base_link_joint" type="fixed">
+          <parent>base_link</parent>
+          <child>right_leg</child>
+        </joint>
+
+
+        <link name="base_link">
+            <pose>0.0 0.0 0.675 0 0 0</pose>
+            <inertial>
+                <pose>0.0 0.0 0.675 0 0 0</pose>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.1</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Red</script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="base_torso_joint" type="revolute">
+          <parent>base_link</parent>
+          <child>torso_link</child>
+          <axis>
+            <dynamics>
+              <damping>1.000000</damping>
+              <friction>0.000000</friction>
+            </dynamics>
+            <xyz>0 0 1</xyz>
+            <use_parent_model_frame>true</use_parent_model_frame>
+          </axis>
+        </joint>
+
+
+        <link name="torso_link">
+            <pose>0 0.0 0.95 0 0 1.57075</pose>
+            <inertial>
+                <pose>0 0.0 0.95 0 0 1.57075</pose>
+                <inertia>
+                    <ixx>0.3050</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.3050</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0125</izz>
+                </inertia>
+                <mass>7.0</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.45</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.45</length>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <script>Gazebo/Purple</script>
+                </material>
+            </visual>
+        </link>
+        <link name="shoulders_link">
+            <pose>0.0 0.0 1.2 0 0</pose>
+            <inertial>
+                <pose>0.0 0.0 1.2 0 0</pose>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.45 0.05</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.45 0.05</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Red</script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="shoulders_link_torso_joint" type="fixed">
+          <parent>torso_link</parent>
+          <child>shoulders_link</child>
+        </joint>
+
+        <joint name="right_shoulders_joint" type="fixed">
+          <parent>shoulders_link</parent>
+          <child>right_arm_link</child>
+        </joint>
+
+        <joint name="left_shoulders_joint" type="fixed">
+          <parent>shoulders_link</parent>
+          <child>left_arm_link</child>
+        </joint>
+
+        <link name="left_leg">
+            <pose>0 0.150 0.325 0 0 1.57075</pose>
+            <inertial>
+                <pose>0 0.150 0.6 0 0 1.57075</pose>
+                <inertia>
+                    <ixx>0.3050</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.3050</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0125</izz>
+                </inertia>
+                <mass>10.0</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.6</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.6</length>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <script>Gazebo/Purple</script>
+                </material>
+            </visual>
+        </link>
+        <link name="left_foot">
+            <pose>0.0 0.150 0.0125 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.3 0.1 0.025</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.3 0.1 0.025</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Red</script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="left_foot_joint" type="fixed">
+          <parent>left_leg</parent>
+          <child>left_foot</child>
+        </joint>
+
+        <joint name="left_leg_base_link_joint" type="fixed">
+          <parent>base_link</parent>
+          <child>left_leg</child>
+        </joint>
+
+       <joint name="world_joint" type="revolute">
+         <parent>world</parent>
+         <child>right_foot</child>
+         <axis>
+           <limit>
+             <lower>0</lower>
+             <upper>0</upper>
+           </limit>
+           <xyz>0 0 1</xyz>
+         </axis>
+       </joint>
+
+        <static>true</static>
+    </model>
+</sdf>
